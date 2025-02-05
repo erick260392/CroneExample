@@ -6,5 +6,5 @@
     </x-slot>
 
     <div class="py-12">
-        @livewire('createPost')
+        @livewire('create-post')
 </x-app-layout>
