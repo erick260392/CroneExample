@@ -23,9 +23,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-    Route::get('/dashboard', CreatePost::class )->name('dashboard');
+    // si necesitaras Crear un componente de pagina completa llamamos directamente al componente que hara la funcion de Backend en nuestra pagina
+    // Route::get('/dashboard', CreatePost::class )->name('dashboard');   
 });
