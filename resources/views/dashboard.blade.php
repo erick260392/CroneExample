@@ -12,5 +12,8 @@
         ]) --}}
 
 
-        @livewire('Contador')
+        {{-- @livewire('Contador') --}}
+
+
+        @livewire('Paises')
 </x-app-layout>
