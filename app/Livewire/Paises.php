@@ -16,6 +16,7 @@ class Paises extends Component
     public $pais;
     public $active;
     public $count;
+    public $open = true;
 
 
     public function save()
