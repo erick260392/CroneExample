@@ -6,8 +6,11 @@
     </x-slot>
 
     <div class="py-12">
-        @livewire('create-post',[
+        {{-- @livewire('create-post',[
             'title'=> 'hola que hace chanchito',
             'user'=> 1
-        ])
+        ]) --}}
+
+
+        @livewire('Contador')
 </x-app-layout>

@@ -11,23 +11,21 @@ class CreatePost extends Component
     //Colletion ,Models, Datatime , etc;  estos datos se deshidratan e hidratan en la ejecucion  por lo cual cambia el tiempo de ejecucion en el cual se renderiza el codigo
 
     // public $title , $user ;
-    public  $name ,$email;
+    public  $name, $email;
 
-    public function mount(User $user){ //podermos mandar a llamar directamente el modelo
+    public function mount(User $user)
+    { //podermos mandar a llamar directamente el modelo
 
         // $this->user = User::find(User $user);
         // $this->email = $user->email;
         // $this->name = $user->name;+
 
         $this->fill(  //podemos usar el metodo fill para extraer solo las propiedades necesarias del modelo 
-         $user->only(['name', 'email'])
+            $user->only(['name', 'email'])
         );
     }
 
-    public function save(){
-
-    
-    }
+    public function save() {}
 
     public function render()
     {
