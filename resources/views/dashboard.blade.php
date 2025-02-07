@@ -15,5 +15,8 @@
         {{-- @livewire('Contador') --}}
 
 
-        @livewire('Paises')
+        {{-- @livewire('Paises') --}}
+
+
+        @livewire('Formulario')
 </x-app-layout>
