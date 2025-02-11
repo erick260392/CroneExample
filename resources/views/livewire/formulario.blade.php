@@ -1,20 +1,20 @@
 <div>
     <div class="bg-white shadow rounded-lg p-3">
 
-        <form>
+        <form wire:submit="save">
             <div class="m-3">
                 <x-label>
                     Nombre
                 </x-label>
             </div>
-            <x-input class="w-full"  wire:model="title" />
+            <x-input class="w-full"  wire:model="title" required/>
 
             <div class="m-3">
 
                 <x-label>
                     Contenido
                 </x-label>
-                <x-textarea class="w-full" wire:model="content">
+                <x-textarea class="w-full" wire:model="content" required>
 
                 </x-textarea>
             </div>
@@ -22,7 +22,11 @@
                 <x-label>
                     Categoria
                 </x-label>
-                <x-select class="mb-4 w-full" wire:model="category_id">
+                <x-select class="mb-4 w-full" wire:model="category_id" required>
+
+                  <option value="" disabled>
+                    Seleccione una Categoria
+                  </option>
 
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}"> {{ $category->name }}</option>
@@ -36,7 +40,9 @@
                 <ul>
                     @foreach ($tags as $tag)
                         <li>
-                            <x-checkbox  wire:model="selectedTags"  value="{{ $tag->id }}" /> {{ $tag->name }}
+                          <label >
+                            <x-checkbox  wire:model="selectedTags"   value="{{ $tag->id }}" /> {{ $tag->name }}
+                          </label>
                         </li>
                     @endforeach
                 </ul>

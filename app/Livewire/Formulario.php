@@ -8,15 +8,27 @@ use Livewire\Component;
 
 class Formulario extends Component
 {
-    public $categories , $tags;
-    public $catagory_id, $title, $content;
+    public $categories, $tags;
+    public $category_id = "", $title, $content;
     public $selectedTags = [];
-    
-    public function mount(){
+
+    public function mount()
+    {
 
         $this->categories = Category::all();
         $this->tags = Tag::all();
+    }
 
+    public function save()
+    {
+
+        dd([
+            "category_id " => $this->category_id,
+            'title' => $this->title,
+            'content' => $this->content,
+            'tags' => $this->selectedTags,
+
+        ]);
     }
 
     public function render()
