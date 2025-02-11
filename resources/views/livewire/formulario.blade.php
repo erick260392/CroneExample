@@ -52,5 +52,21 @@
             </div>
         </form>
 
+        <div class="bg-white shadow rounded-lg p-6 mb-8">
+
+        </div>
+
+        <div class="bg-white shadow rounded-lg p-6">
+
+          @foreach ($posts as $post )
+            <ul class="list-disc list-inside">
+              <li>
+                {{$post->title}}
+              </li>
+            </ul>
+          @endforeach
+
+        </div>
+
     </div>
 </div>
