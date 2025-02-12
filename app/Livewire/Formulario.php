@@ -5,13 +5,26 @@ namespace App\Livewire;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Formulario extends Component
 {
-    public $categories, $tags;
-    public $category_id = "", $title, $content;
+    public $categories;
+    public $tags;
+
+    #[Rule('required|exists:categories,id' , as : 'categoria')]
+    public $category_id = "";
+
+    #[Rule('required' , message: 'El campo titulo es obligatorio')]
+    public $title;
+
+    #[Rule('required', message: 'El campo contenido es obligatorio')]
+    public $content;
+
+    #[Rule('required|array' , as : 'etiquetas')]
     public $selectedTags = [];
+
     public $posts;
     public $open = false;
     public $postEdit = [
@@ -33,13 +46,21 @@ class Formulario extends Component
 
     public function save()
     {
+
+        $this->validate();
+        
         //validamos los campos
-        $this->validate([
-            'category_id' => 'required|categories,id',
-            'title' => 'required',
-            'content' => 'required',
-            'selectedTags' => 'required|array'
-        ]);
+        // $this->validate([
+        //     'category_id' => 'required|categories,id',
+        //     'title' => 'required',
+        //     'content' => 'required',
+        //     'selectedTags' => 'required|array'
+        // ],[],[
+        //     'category_id' => 'categoria',
+        //     'title' => 'titulo',
+        //     'content' => 'contenido',
+        //     'selectedTags' => 'etiquetas'
+        // ]);
 
         //creamos un nuevo registro
         // $post = Post::create([
