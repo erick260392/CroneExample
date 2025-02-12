@@ -37,6 +37,7 @@ class Formulario extends Component
         'postCreate.tags' => 'requiered|array'
 
     ])]
+    
     public $postCreate = [
         'category_id' => '',
         'title' => '',
