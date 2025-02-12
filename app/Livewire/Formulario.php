@@ -33,6 +33,13 @@ class Formulario extends Component
 
     public function save()
     {
+        //validamos los campos
+        $this->validate([
+            'category_id' => 'required|categories,id',
+            'title' => 'required',
+            'content' => 'required',
+            'selectedTags' => 'required|array'
+        ]);
 
         //creamos un nuevo registro
         // $post = Post::create([

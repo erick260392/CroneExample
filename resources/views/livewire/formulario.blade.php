@@ -7,22 +7,25 @@
                     Nombre
                 </x-label>
             </div>
-            <x-input class="w-full" wire:model="title" required />
+            <x-input class="w-full" wire:model="title" />
+            <x-input-error for="title" />
 
             <div class="m-3">
 
                 <x-label>
                     Contenido
                 </x-label>
-                <x-textarea class="w-full" wire:model="content" required>
+                <x-textarea class="w-full" wire:model="content">
 
                 </x-textarea>
+
+                <x-input-error for="content" />
             </div>
             <div class="m-4">
                 <x-label>
                     Categoria
                 </x-label>
-                <x-select class="mb-4 w-full" wire:model="category_id" required>
+                <x-select class="mb-4 w-full" wire:model="category_id">
 
                     <option value="" disabled>
                         Seleccione una Categoria
@@ -32,6 +35,8 @@
                         <option value="{{ $category->id }}"> {{ $category->name }}</option>
                     @endforeach
                 </x-select>
+
+                <x-input-error for="category_id" />
             </div>
             <div class="mb-4">
                 <x-label>
@@ -46,6 +51,7 @@
                         </li>
                     @endforeach
                 </ul>
+                <x-input-error for="selectedTags" />
             </div>
             <div class="flex justify-end">
                 <x-button> Crear </x-button>
