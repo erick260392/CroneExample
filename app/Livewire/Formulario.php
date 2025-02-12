@@ -13,6 +13,15 @@ class Formulario extends Component
     public $category_id = "", $title, $content;
     public $selectedTags = [];
     public $posts;
+    public $open = false;
+    public $postEdit = [
+        'category_id' => '',
+        'title' => '',
+        'content' => '',
+        'tags' => [],
+    ];
+
+    public $postEditId;
 
     public function mount()
     {
@@ -20,7 +29,6 @@ class Formulario extends Component
         $this->categories = Category::all();
         $this->tags = Tag::all();
         $this->posts = Post::all();
-
     }
 
     public function save()
@@ -45,7 +53,28 @@ class Formulario extends Component
 
         //actualizamos la propiedad
         $this->posts = Post::all();
+    }
 
+    public function edit($postId)
+    {
+
+        $this->postEditId = $postId;
+        $this->open = true;
+
+        $post = Post::find($postId);
+
+        $this->postEdit = [
+            'title' => $post->title,
+            'content' => $post->content,
+            'category_id' => $post->category_id,
+            'tags' => $post->tags->pluck('id')->toArray(),
+        ];
+    }
+
+    public function update()
+    {
+
+        $post = Post::find($this->postEditId);
     }
 
     public function render()

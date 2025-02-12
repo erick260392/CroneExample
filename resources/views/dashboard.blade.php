@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 <div class="py-12">
-    <div class="max-w-4x1 mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
         {{-- @livewire('create-post',[
             'title'=> 'hola que hace chanchito',
             'user'=> 1
