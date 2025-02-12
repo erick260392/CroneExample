@@ -75,6 +75,25 @@ class Formulario extends Component
     {
 
         $post = Post::find($this->postEditId);
+        $post->update([
+            'title'=>$this->postEdit['title'],
+            'category_id'=>$this->postEdit['category_id'],
+            'content'=>$this->postEdit['content'],
+        ]);
+
+        $post->tags()->sync($this->postEdit['tags']);
+
+        $this->reset(['open', 'postEdit', 'postEditId']);
+
+        $this->posts = Post::all();
+    }
+
+    public function destroy($postId)
+    {
+        $post = Post::find($postId);
+        $post->delete();
+
+        $this->posts = Post::all();
     }
 
     public function render()
