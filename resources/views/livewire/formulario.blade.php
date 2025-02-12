@@ -7,7 +7,7 @@
                     Nombre
                 </x-label>
             </div>
-            <x-input class="w-full" wire:model="title" />
+            <x-input class="w-full" wire:model="postCreate.title" />
             <x-input-error for="title" />
 
             <div class="m-3">
@@ -15,7 +15,7 @@
                 <x-label>
                     Contenido
                 </x-label>
-                <x-textarea class="w-full" wire:model="content">
+                <x-textarea class="w-full" wire:model="postCreate.content">
 
                 </x-textarea>
 
@@ -25,7 +25,7 @@
                 <x-label>
                     Categoria
                 </x-label>
-                <x-select class="mb-4 w-full" wire:model="category_id">
+                <x-select class="mb-4 w-full" wire:model="postCreate.category_id">
 
                     <option value="" disabled>
                         Seleccione una Categoria
@@ -46,7 +46,7 @@
                     @foreach ($tags as $tag)
                         <li>
                             <label>
-                                <x-checkbox wire:model="selectedTags" value="{{ $tag->id }}" /> {{ $tag->name }}
+                                <x-checkbox wire:model="spostCreate.tags" value="{{ $tag->id }}" /> {{ $tag->name }}
                             </label>
                         </li>
                     @endforeach

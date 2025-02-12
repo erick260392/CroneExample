@@ -10,23 +10,40 @@ use Livewire\Component;
 
 class Formulario extends Component
 {
-    public $categories;
-    public $tags;
 
-    #[Rule('required|exists:categories,id' , as : 'categoria')]
-    public $category_id = "";
 
-    #[Rule('required' , message: 'El campo titulo es obligatorio')]
-    public $title;
+    // #[Rule('required|exists:categories,id' , as : 'categoria')]
+    // public $category_id = "";
 
-    #[Rule('required', message: 'El campo contenido es obligatorio')]
-    public $content;
+    // #[Rule('required' , message: 'El campo titulo es obligatorio')]
+    // public $title;
 
-    #[Rule('required|array' , as : 'etiquetas')]
-    public $selectedTags = [];
+    // #[Rule('required', message: 'El campo contenido es obligatorio')]
+    // public $content;
+
+    // #[Rule('required|array' , as : 'etiquetas')]
+    // public $selectedTags = [];
+
 
     public $posts;
+    public $categories;
+    public $tags;
     public $open = false;
+
+    #[Rule([
+        'postCreate.title' => 'required',
+        'postCreate.content' => 'requiered',
+        'postCreate.category_id' => 'requiered|exists:categories,id',
+        'postCreate.tags' => 'requiered|array'
+
+    ])]
+    public $postCreate = [
+        'category_id' => '',
+        'title' => '',
+        'content' => '',
+        'tags' => [],
+    ];
+
     public $postEdit = [
         'category_id' => '',
         'title' => '',
@@ -47,8 +64,8 @@ class Formulario extends Component
     public function save()
     {
 
-        $this->validate();
-        
+        // $this->validate();
+
         //validamos los campos
         // $this->validate([
         //     'category_id' => 'required|categories,id',
@@ -70,14 +87,19 @@ class Formulario extends Component
         // ]);
 
         $post = Post::create(
-            $this->only('category_id', 'title', 'content')
+            [
+                'category_id' => $this->postCreate['category_id'],
+                'title' => $this->postCreate['title'],
+                'content' => $this->postCreate['content'],
+            ]
         );
 
         //agrega registros atravez de el metodo de laravel a nuestra tabla pivote
-        $post->tags()->attach($this->selectedTags);
+        $post->tags()->attach($this->postCreate['tags']);
+
 
         //con este metodo limpiamos todas nuestras porpiedades
-        $this->reset(['category_id', 'title', 'content', 'selectedTags']);
+        $this->reset(['postCreate']);
 
         //actualizamos la propiedad
         $this->posts = Post::all();
@@ -104,9 +126,9 @@ class Formulario extends Component
 
         $post = Post::find($this->postEditId);
         $post->update([
-            'title'=>$this->postEdit['title'],
-            'category_id'=>$this->postEdit['category_id'],
-            'content'=>$this->postEdit['content'],
+            'title' => $this->postEdit['title'],
+            'category_id' => $this->postEdit['category_id'],
+            'content' => $this->postEdit['content'],
         ]);
 
         $post->tags()->sync($this->postEdit['tags']);
