@@ -32,11 +32,11 @@ class Formulario extends Component
 
     #[Rule([
         'postCreate.title' => 'required',
-        'postCreate.content' => 'requiered',
-        'postCreate.category_id' => 'requiered|exists:categories,id',
-        'postCreate.tags' => 'requiered|array'
+        'postCreate.content' => 'required',
+        'postCreate.category_id' => 'required|exists:categories,id',
+        'postCreate.tags' => 'required|array'
 
-    ])]
+    ],[],['postCreate.category_id' => 'categoria','postCreate.title' => 'titulo','postCreate.content' => 'contenido','postCreate.tags' => 'etiquetas'])]
     
     public $postCreate = [
         'category_id' => '',
@@ -65,7 +65,7 @@ class Formulario extends Component
     public function save()
     {
 
-        // $this->validate();
+        $this->validate();
 
         //validamos los campos
         // $this->validate([

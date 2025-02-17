@@ -8,7 +8,7 @@
                 </x-label>
             </div>
             <x-input class="w-full" wire:model="postCreate.title" />
-            <x-input-error for="title" />
+            <x-input-error for="postCreate.title" />
 
             <div class="m-3">
 
@@ -19,7 +19,7 @@
 
                 </x-textarea>
 
-                <x-input-error for="content" />
+                <x-input-error for="postCreate.content" />
             </div>
             <div class="m-4">
                 <x-label>
@@ -36,7 +36,7 @@
                     @endforeach
                 </x-select>
 
-                <x-input-error for="category_id" />
+                <x-input-error for="postCreate.category_id" />
             </div>
             <div class="mb-4">
                 <x-label>
@@ -46,12 +46,12 @@
                     @foreach ($tags as $tag)
                         <li>
                             <label>
-                                <x-checkbox wire:model="spostCreate.tags" value="{{ $tag->id }}" /> {{ $tag->name }}
+                                <x-checkbox wire:model="postCreate.tags" value="{{ $tag->id }}" /> {{ $tag->name }}
                             </label>
                         </li>
                     @endforeach
                 </ul>
-                <x-input-error for="selectedTags" />
+                <x-input-error for="postCreate.selectedTags" />
             </div>
             <div class="flex justify-end">
                 <x-button> Crear </x-button>
