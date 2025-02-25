@@ -97,22 +97,24 @@
                         Nombre
                     </x-label>
                 </div>
-                <x-input class="w-full" wire:model="postEdit.title" required />
-
+                <x-input class="w-full" wire:model="postEdit.title"/>
+                
+                  <x-input-error for='postEdit.title'/>
                 <div class="m-3">
 
                     <x-label>
                         Contenido
                     </x-label>
-                    <x-textarea class="w-full" wire:model="postEdit.content" required>
+                    <x-textarea class="w-full" wire:model="postEdit.content" >
 
                     </x-textarea>
+                    <x-input-error for = "postEdit.content"/>
                 </div>
                 <div class="m-4">
                     <x-label>
                         Categoria
                     </x-label>
-                    <x-select class="mb-4 w-full" wire:model="postEdit.category_id" required>
+                    <x-select class="mb-4 w-full" wire:model="postEdit.category_id">
 
                         <option value="" disabled>
                             Seleccione una Categoria
@@ -122,6 +124,7 @@
                             <option value="{{ $category->id }}"> {{ $category->name }}</option>
                         @endforeach
                     </x-select>
+                    <x-input-error for= "postEdit.category_id"/>
                 </div>
                 <div class="mb-4">
                     <x-label>
@@ -135,10 +138,12 @@
                                     {{ $tag->name }}
                                 </label>
                             </li>
+                          
                         @endforeach
                     </ul>
+    
                 </div>
-
+                <x-input-error for= "postEdit.tags"/>
             </x-slot>
 
             <x-slot name="footer">

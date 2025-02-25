@@ -30,14 +30,14 @@ class Formulario extends Component
     public $tags;
     public $open = false;
 
-    #[Rule([
-        'postCreate.title' => 'required',
-        'postCreate.content' => 'required',
-        'postCreate.category_id' => 'required|exists:categories,id',
-        'postCreate.tags' => 'required|array'
+    // #[Rule([
+    //     'postCreate.title' => 'required',
+    //     'postCreate.content' => 'required',
+    //     'postCreate.category_id' => 'required|exists:categories,id',
+    //     'postCreate.tags' => 'required|array'
 
-    ],[],['postCreate.category_id' => 'categoria','postCreate.title' => 'titulo','postCreate.content' => 'contenido','postCreate.tags' => 'etiquetas'])]
-    
+    // ],[],['postCreate.category_id' => 'categoria','postCreate.title' => 'titulo','postCreate.content' => 'contenido','postCreate.tags' => 'etiquetas'])]
+
     public $postCreate = [
         'category_id' => '',
         'title' => '',
@@ -53,6 +53,41 @@ class Formulario extends Component
     ];
 
     public $postEditId;
+
+    public function rules()
+    {
+
+        return [
+            'postCreate.title' => 'required',
+            'postCreate.content' => 'required',
+            'postCreate.category_id' => 'required|exists:categories,id',
+            'postCreate.tags' => 'required|array'
+        ];
+    }
+
+    public function messages()
+    {
+
+        return [
+            'postCreate.title.required' => 'El campo titulo es obligatorio',
+            'postCreate.content.required' => 'El campo contenido es obligatorio',
+            'postCreate.category_id.required' => 'El campo categoria es obligatorio',
+            'postCreate.category_id.exists' => 'La categoria seleccionada no existe',
+            'postCreate.tags.required' => 'El campo etiquetas es obligatorio',
+            'postCreate.tags.array' => 'El campo etiquetas debe ser un array',
+        ];
+    }
+
+    public function validationAttributes()
+    {
+
+        return [
+            'postCreate.title' => 'titulo',
+            'postCreate.content' => 'contenido',
+            'postCreate.category_id' => 'categoria',
+            'postCreate.tags' => 'etiquetas',
+        ];
+    }
 
     public function mount()
     {
@@ -109,6 +144,8 @@ class Formulario extends Component
     public function edit($postId)
     {
 
+        $this->resetValidation();
+       
         $this->postEditId = $postId;
         $this->open = true;
 
@@ -124,6 +161,14 @@ class Formulario extends Component
 
     public function update()
     {
+
+        $this->validate([
+            'postEdit.title' => 'required',
+            'postEdit.content' => 'required',
+            'postEdit.category_id' => 'required',
+            'postEdit.tags' => 'required|array'
+        ]);
+
 
         $post = Post::find($this->postEditId);
         $post->update([
