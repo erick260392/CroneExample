@@ -85,7 +85,7 @@
 
 
     <form wire:submit="update">
-        <x-dialog-modal wire:model="open">
+        <x-dialog-modal wire:model="postEdit.open">
 
             <x-slot name="title">
                 Actualizar Post
@@ -148,7 +148,7 @@
 
             <x-slot name="footer">
                 <div class="flex justify-end">
-                    <x-danger-button class="mr-2" wire:click="$set('open',false)"> Cancelar </x-danger-button>
+                    <x-danger-button class="mr-2" wire:click="$set('postEdit.open',false)"> Cancelar </x-danger-button>
                     <x-button> Actualizar </x-button>
                 </div>
             </x-slot>
