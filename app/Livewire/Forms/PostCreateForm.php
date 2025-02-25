@@ -9,7 +9,7 @@ use Livewire\Form;
 
 class PostCreateForm extends Form
 {
-    #[Rule('required')]
+    #[Rule('required|min:6')]
     public $title;
 
     #[Rule('required')]
