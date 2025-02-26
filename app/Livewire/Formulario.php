@@ -7,7 +7,6 @@ use App\Livewire\Forms\PostEditForm;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Formulario extends Component
@@ -37,6 +36,10 @@ class Formulario extends Component
 
         //actualizamos la propiedad
         $this->posts = Post::all();
+
+
+        // Dispatch the event 
+        $this->dispatch('post-Created', 'Nuevo Articulo Creado');
     }
 
     public function edit($postId)
@@ -52,6 +55,9 @@ class Formulario extends Component
         $this->postEdit->validate();
         $this->postEdit->update();
         $this->posts = Post::all();
+
+        // Dispatch the event 
+        $this->dispatch('post-Created', 'Nuevo Articulo Actualizado');
     }
 
     public function destroy($postId)
@@ -59,6 +65,9 @@ class Formulario extends Component
         $post = Post::find($postId);
         $post->delete();
         $this->posts = Post::all();
+
+        // Dispatch the event 
+        $this->dispatch('post-Created', 'Articulo Eliminado');
     }
 
     public function render()

@@ -46,7 +46,8 @@
                     @foreach ($tags as $tag)
                         <li>
                             <label>
-                                <x-checkbox wire:model="postCreate.tags" value="{{ $tag->id }}" /> {{ $tag->name }}
+                                <x-checkbox wire:model="postCreate.tags" value="{{ $tag->id }}" />
+                                {{ $tag->name }}
                             </label>
                         </li>
                     @endforeach
@@ -58,9 +59,6 @@
             </div>
         </form>
 
-        <div class="bg-white shadow rounded-lg p-6 mb-8">
-
-        </div>
 
         <div class="bg-white shadow rounded-lg p-6">
 
@@ -97,18 +95,18 @@
                         Nombre
                     </x-label>
                 </div>
-                <x-input class="w-full" wire:model="postEdit.title"/>
-                
-                  <x-input-error for='postEdit.title'/>
+                <x-input class="w-full" wire:model="postEdit.title" />
+
+                <x-input-error for='postEdit.title' />
                 <div class="m-3">
 
                     <x-label>
                         Contenido
                     </x-label>
-                    <x-textarea class="w-full" wire:model="postEdit.content" >
+                    <x-textarea class="w-full" wire:model="postEdit.content">
 
                     </x-textarea>
-                    <x-input-error for = "postEdit.content"/>
+                    <x-input-error for = "postEdit.content" />
                 </div>
                 <div class="m-4">
                     <x-label>
@@ -124,7 +122,7 @@
                             <option value="{{ $category->id }}"> {{ $category->name }}</option>
                         @endforeach
                     </x-select>
-                    <x-input-error for= "postEdit.category_id"/>
+                    <x-input-error for= "postEdit.category_id" />
                 </div>
                 <div class="mb-4">
                     <x-label>
@@ -138,20 +136,28 @@
                                     {{ $tag->name }}
                                 </label>
                             </li>
-                          
                         @endforeach
                     </ul>
-    
+
                 </div>
-                <x-input-error for= "postEdit.tags"/>
+                <x-input-error for= "postEdit.tags" />
             </x-slot>
 
             <x-slot name="footer">
                 <div class="flex justify-end">
-                    <x-danger-button class="mr-2" wire:click="$set('postEdit.open',false)"> Cancelar </x-danger-button>
+                    <x-danger-button class="mr-2" wire:click="$set('postEdit.open',false)"> Cancelar
+                    </x-danger-button>
                     <x-button> Actualizar </x-button>
                 </div>
             </x-slot>
         </x-dialog-modal>
     </form>
+
+    <script>
+        document.addEventListener('livewire:init', function() {
+            Livewire.on('post-Created', (comment) => {
+                alert(comment);
+            });
+        });
+    </script>
 </div>

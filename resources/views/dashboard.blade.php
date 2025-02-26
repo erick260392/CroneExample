@@ -4,27 +4,29 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-<div class="py-12">
-    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-        {{-- @livewire('create-post',[
+    <div class="py-12">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            {{-- @livewire('create-post',[
             'title'=> 'hola que hace chanchito',
             'user'=> 1
         ]) --}}
 
 
-        {{-- @livewire('Contador') --}}
+            {{-- @livewire('Contador') --}}
 
 
-        {{-- @livewire('Paises') --}}
+            {{-- @livewire('Paises') --}}
+
+            @livewire('Formulario')
+
+            <div class="mt-8">
+
+                @livewire('comments')
+            </div>
 
 
-
-
-        @livewire('Formulario')
-
+        </div>
 
     </div>
-
-</div>
 
 </x-app-layout>
