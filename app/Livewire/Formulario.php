@@ -70,6 +70,10 @@ class Formulario extends Component
         $this->dispatch('post-Created', 'Articulo Eliminado');
     }
 
+    public function redirigir()
+    {
+        return $this->redirect('/prueba', navigate: true);
+    }
     public function render()
     {
         return view('livewire.formulario');

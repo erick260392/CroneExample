@@ -1,6 +1,6 @@
 <div>
     <div class="bg-white shadow rounded-lg p-3">
-
+        <x-button wire:click='redirigir'>Ir a prueba</x-button>
         <form wire:submit="save">
             <div class="m-3">
                 <x-label>

@@ -29,4 +29,5 @@ Route::middleware([
 
     // si necesitaras Crear un componente de pagina completa llamamos directamente al componente que hara la funcion de Backend en nuestra pagina
     // Route::get('/dashboard', CreatePost::class )->name('dashboard');   
+    Route::view('/prueba', 'prueba')->name('prueba');
 });

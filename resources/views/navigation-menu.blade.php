@@ -12,11 +12,19 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" wire:navigate.hover>
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                 <!-- Navigation Links -->
+                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('prueba') }}" :active="request()->routeIs('prueba')" wire:navigate.hover>
+                        {{ __('Prueba') }}
+                    </x-nav-link>
+                </div>
             </div>
+
+            
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Teams Dropdown -->
